@@ -67,7 +67,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-semibold mb-1">Phone</p>
-                    <p className="text-blue-100">+1 (555) 123-4567</p>
+                    <p className="text-blue-100">+234 703 136 9585</p>
                   </div>
                 </div>
 
@@ -77,7 +77,11 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-semibold mb-1">Address</p>
-                    <p className="text-blue-100">123 Youth Center Drive<br />Community City, ST 12345</p>
+                    <p className="text-blue-100">
+                      Zakat and Waqf Secretariat<br />
+                      OPP. Fatima College of Nursing Sciences,<br />
+                      Sifawa
+                    </p>
                   </div>
                 </div>
               </div>

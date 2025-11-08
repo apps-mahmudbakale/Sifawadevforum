@@ -1,5 +1,6 @@
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Logo from '../logo.png';
 
 interface NavbarProps {
   activeSection: string;
@@ -42,11 +43,15 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-20">
-          <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-xl">YDF</span>
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12">
+              <img
+                src={Logo}
+                alt="SDF Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
-            <span className="font-bold text-xl text-gray-800">Youth Development Forum</span>
+            <span className="font-bold text-xl text-gray-800">Sifawa Development Forum</span>
           </div>
 
           <div className="hidden md:flex space-x-8">

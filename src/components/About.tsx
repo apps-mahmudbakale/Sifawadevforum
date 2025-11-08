@@ -39,19 +39,51 @@ export default function About() {
 
         <div className="max-w-4xl mx-auto mb-20">
           <div className="bg-gradient-to-br from-blue-50 to-yellow-50 rounded-3xl p-8 md:p-12 shadow-lg">
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              The Youth Development Forum was founded with a singular vision: to create a space where young people
-              can discover their potential, develop essential skills, and become active contributors to society.
+            <p className="text-lg text-gray-700 leading-relaxed mb-6 text-justify">
+              The Youth Development Forum was founded in 2020 with a singular vision: to create a dynamic and inclusive space where young people
+              from all walks of life can discover their potential, develop essential skills, and become active contributors to society. Our journey
+              began with a small group of dedicated individuals who believed in the power of youth to transform communities.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Since our inception, we've grown into a thriving community of passionate individuals committed to
-              personal excellence and social impact. Through workshops, mentorship programs, and community initiatives,
-              we empower youth to dream big and achieve even bigger.
+            <p className="text-lg text-gray-700 leading-relaxed mb-6 text-justify">
+              Since our inception, we've grown into a thriving community of over 1,000 passionate individuals committed to
+              personal excellence and social impact. Through our comprehensive workshops, one-on-one mentorship programs, and grassroots community initiatives,
+              we empower youth to dream big and achieve even bigger. Our programs have touched lives across multiple regions, creating ripples of positive change
+              that extend far beyond our immediate community.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-gray-700 leading-relaxed mb-6 text-justify">
+              We pride ourselves on creating an environment where innovation meets purpose, where leadership skills are honed through real-world experiences,
+              and where lasting friendships are forged. Our alumni network continues to grow, with many of our past participants now leading successful
+              initiatives and organizations of their own.
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed text-justify">
               Our mission is to cultivate the next generation of leaders, innovators, and changemakers who will
-              shape a brighter future for all.
+              shape a brighter future for all. Through continuous learning, mentorship, and hands-on experience,
+              we're committed to empowering youth with the tools they need to make meaningful contributions to their
+              communities and beyond.
             </p>
+          </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto mb-20">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-blue-50 rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <h3 className="text-2xl font-bold text-blue-600 mb-4">Our Vision</h3>
+              <p className="text-gray-700 leading-relaxed text-justify">
+                To cultivate a thriving, forward-thinking Sifawa community united in peace and progress. 
+                We achieve this through education, empowerment, innovation and a collective commitment 
+                to sustainable development.
+              </p>
+            </div>
+            <div className="bg-yellow-50 rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <h3 className="text-2xl font-bold text-yellow-600 mb-4">Our Mission</h3>
+              <p className="text-gray-700 leading-relaxed text-justify">
+                To empower and unite the Sifawa community by providing quality education, fostering 
+                social cohesion and cultural pride, expanding economic opportunities, and ensuring 
+                peace and security. Through innovation and sustainable practices, we strive to create 
+                an environment where every individual can learn, grow and contribute to a peaceful 
+                and progressive future for Sifawa.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -79,7 +111,7 @@ export default function About() {
                   <Icon className="text-white" size={32} />
                 </div>
                 <h4 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h4>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                <p className="text-gray-600 leading-relaxed text-justify">{value.description}</p>
               </div>
             );
           })}

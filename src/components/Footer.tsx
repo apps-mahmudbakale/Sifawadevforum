@@ -1,4 +1,5 @@
 import { Heart, Mail, Phone, MapPin } from 'lucide-react';
+import Logo from '../logo.png';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -23,10 +24,14 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl">YDF</span>
+              <div className="w-12 h-12">
+                <img
+                  src={Logo}
+                  alt="SDF Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
-              <span className="font-bold text-lg">Youth Development Forum</span>
+              <span className="font-bold text-lg">Sifawa Development Forum</span>
             </div>
             <p className="text-gray-400 leading-relaxed">
               Empowering the next generation of leaders through education, mentorship, and community engagement.
@@ -58,11 +63,11 @@ export default function Footer() {
               </li>
               <li className="flex items-start space-x-3">
                 <Phone size={20} className="text-blue-400 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">+1 (555) 123-4567</span>
+                <span className="text-gray-400">+234 703 136 9585</span>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin size={20} className="text-blue-400 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">123 Youth Center Drive<br />Community City, ST 12345</span>
+                <span className="text-gray-400">Zakat and Waqf Secretariat<br />OPP. Fatima College of Nursing Sciences,<br />Sifawa</span>
               </li>
             </ul>
           </div>
