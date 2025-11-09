@@ -1,61 +1,79 @@
 import { useState } from 'react';
-import { Linkedin, X } from 'lucide-react';
+import { Linkedin, X, Phone } from 'lucide-react';
+import President from '../President.jpeg';
 
 interface TeamMember {
   name: string;
   role: string;
   image: string;
   bio: string;
+  shortBio?: string;
   linkedin?: string;
+  phone?: string;
 }
 
 export default function Team() {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
+  const president: TeamMember = {
+    name: 'Dr. Abubakar Boyi Sifawa',
+    role: 'President',
+    image: President,
+    shortBio: 'Dr. Abubakar Boyi Sifawa is a seasoned educator and community leader with over 25 years of experience in public service, education policy, and rural development.',
+    bio: `Dr. Abubakar Boyi Sifawa was born on February 18, 1977, in Sifawa, Sokoto State, Nigeria. He began his education in the traditional way by attending a local Qur'anic school (known as Karatun Allo) under the tutelage of Malam Garba Dariya, where he memorized and learned the foundations of Islamic education at a young age. For his formal schooling, he enrolled at Sifawa Model Primary School from 1983 to 1989, laying a strong academic foundation early on.
+
+    After primary school, young Abubakar pursued teacher training in secondary education. He attended the College of Arts and Arabic Studies in Sokoto (1989–1994), where he obtained the Grade II Teachers' Certificate in 1994. Not one to rest on his laurels, he proceeded to earn a Nigerian Certificate in Education (NCE) at Shehu Shagari College of Education, Sokoto between 1995 and 1998, graduating with an impressive Upper Credit. This credential qualified him as a trained teacher and set the stage for his career in education.
+    
+    Driven by a passion for higher learning, Dr. Sifawa furthered his studies at Usmanu Danfodiyo University, Sokoto (UDUS). There, he obtained a Bachelor of Arts in Education (B.A.Ed.) in Islamic Studies in 2003, finishing with a strong academic record (Second Class Lower Division). Not stopping at the bachelor's level, he continued at UDUS for postgraduate studies. He earned a Master of Education (M.Ed.) in Guidance and Counselling in 2011, and subsequently achieved the pinnacle of academic qualifications with a Doctor of Philosophy (Ph.D.) in Education (Guidance and Counselling) in 2015. This remarkable educational journey – from Qur'anic school through to a doctoral degree – highlights Dr. Sifawa's lifelong commitment to learning and personal growth.`,
+    linkedin: '#',
+    phone: '+234 703 136 9585'
+  };
+
   const teamMembers: TeamMember[] = [
     {
-      name: 'Sarah Johnson',
-      role: 'President & Founder',
-      image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600',
-      bio: 'Sarah is a passionate advocate for youth empowerment with over 5 years of experience in community development. She founded the Youth Development Forum to create opportunities for young leaders to thrive and make meaningful impact.',
-      linkedin: '#'
-    },
-    {
-      name: 'Marcus Chen',
+      name: 'Amina Bello',
       role: 'Programs Director',
-      image: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600',
-      bio: 'Marcus oversees all our youth development programs and workshops. With a background in education and psychology, he designs transformative experiences that help young people discover their potential.',
-      linkedin: '#'
-    },
-    {
-      name: 'Aisha Patel',
-      role: 'Community Outreach Lead',
-      image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600',
-      bio: 'Aisha connects our forum with communities across the region. Her expertise in social work and grassroots organizing ensures our initiatives reach those who need them most.',
-      linkedin: '#'
-    },
-    {
-      name: 'David Martinez',
-      role: 'Mentorship Coordinator',
-      image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=600',
-      bio: 'David manages our mentorship programs, matching young people with experienced professionals. His dedication to nurturing talent has helped hundreds of youth achieve their goals.',
-      linkedin: '#'
-    },
-    {
-      name: 'Emily Okonkwo',
-      role: 'Events & Activities Manager',
       image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=600',
-      bio: 'Emily brings our vision to life through engaging events and activities. Her creative approach and organizational skills make every forum event memorable and impactful.',
+      bio: 'Amina coordinates SDF programs and ensures they respond to local needs. Her background in education enables practical, community-led learning.',
+      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
-      name: 'James Wilson',
+      name: 'Chukwuemeka Okafor',
+      role: 'Community Outreach Lead',
+      image: 'https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&w=600',
+      bio: 'Chukwuemeka builds strong ties with local leaders and youth groups to expand SDF’s reach and strengthen grassroots participation.',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Fatima Yusuf',
+      role: 'Mentorship Coordinator',
+      image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600',
+      bio: 'Fatima runs mentorship programs that link young people with professionals for career guidance and personal development.',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Emeka Nwankwo',
+      role: 'Events & Activities Manager',
+      image: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600',
+      bio: 'Emeka designs engaging, impactful events that showcase youth talent and create learning opportunities across Sifawa.',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Ngozi Adenike',
       role: 'Communications Director',
-      image: 'https://images.pexels.com/photos/1121796/pexels-photo-1121796.jpeg?auto=compress&cs=tinysrgb&w=600',
-      bio: 'James amplifies our message and shares success stories from our community. His background in digital media helps us inspire and engage youth across multiple platforms.',
+      image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600',
+      bio: 'Ngozi manages SDF’s storytelling and digital outreach to highlight success stories and attract partners and volunteers.',
+      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     }
   ];
+
+  // use the dedicated `president` object (do not search teamMembers)
+  const presidentMember = president;
 
   return (
     <section id="team" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -67,6 +85,52 @@ export default function Team() {
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Passionate individuals dedicated to empowering youth and creating positive change
           </p>
+        </div>
+
+        {/* President section */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="bg-white rounded-3xl shadow-lg overflow-hidden md:flex">
+            <div className="md:w-1/2 h-80 relative">
+              <img
+                src={president.image}
+                alt={president.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="md:w-1/2 p-8 flex flex-col justify-between">
+              <div>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">{president.name}</h3>
+                <p className="text-blue-600 font-semibold mb-4">{president.role}</p>
+                {president.phone && (
+                  <p className="text-gray-600 mb-4 flex items-center gap-2">
+                    <Phone size={18} />
+                    <span>{president.phone}</span>
+                  </p>
+                )}
+                <p className="text-gray-700 leading-relaxed mb-6 text-justify line-clamp-4">
+                  {president.shortBio || president.bio}
+                </p>
+              </div>
+              <div className="flex items-center space-x-4">
+                {president.linkedin && (
+                  <a
+                    href={president.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center px-5 py-3 rounded-xl border border-blue-600 text-blue-600 font-semibold hover:bg-blue-50 transition"
+                  >
+                    View LinkedIn
+                  </a>
+                )}
+                <button
+                  onClick={() => setSelectedMember(president)}
+                  className="inline-flex items-center px-5 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold hover:shadow-lg transition"
+                >
+                  View Full Profile
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -89,7 +153,13 @@ export default function Team() {
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
                 <p className="text-blue-600 font-semibold mb-4">{member.role}</p>
-                <p className="text-gray-600 text-sm line-clamp-2 mb-4">{member.bio}</p>
+                {member.phone && (
+                  <p className="text-gray-600 mb-4 flex items-center gap-2 text-sm">
+                    <Phone size={16} />
+                    <span>{member.phone}</span>
+                  </p>
+                )}
+                <p className="text-gray-600 text-sm line-clamp-2 mb-4 text-justify">{member.bio}</p>
                 <button className="text-blue-600 font-semibold text-sm hover:text-blue-700 transition-colors">
                   Read More →
                 </button>
@@ -97,49 +167,58 @@ export default function Team() {
             </div>
           ))}
         </div>
-      </div>
 
-      {selectedMember && (
-        <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200"
-          onClick={() => setSelectedMember(null)}
-        >
+        {/* Modal */}
+        {selectedMember && (
           <div
-            className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in duration-200"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200"
+            onClick={() => setSelectedMember(null)}
           >
-            <div className="relative h-72">
-              <img
-                src={selectedMember.image}
-                alt={selectedMember.name}
-                className="w-full h-full object-cover"
-              />
-              <button
-                onClick={() => setSelectedMember(null)}
-                className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2 hover:bg-white transition-colors"
-              >
-                <X size={24} className="text-gray-800" />
-              </button>
-            </div>
-
-            <div className="p-8">
-              <h3 className="text-3xl font-bold text-gray-900 mb-2">{selectedMember.name}</h3>
-              <p className="text-blue-600 font-semibold text-lg mb-6">{selectedMember.role}</p>
-              <p className="text-gray-700 leading-relaxed mb-6">{selectedMember.bio}</p>
-
-              {selectedMember.linkedin && (
-                <a
-                  href={selectedMember.linkedin}
-                  className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors"
+            <div
+              className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in duration-200"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative h-72">
+                <img
+                  src={selectedMember.image}
+                  alt={selectedMember.name}
+                  className="w-full h-full object-cover"
+                />
+                <button
+                  onClick={() => setSelectedMember(null)}
+                  className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2 hover:bg-white transition-colors"
                 >
-                  <Linkedin size={20} />
-                  <span>Connect on LinkedIn</span>
-                </a>
-              )}
+                  <X size={24} className="text-gray-800" />
+                </button>
+              </div>
+
+              <div className="p-8">
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">{selectedMember.name}</h3>
+                <p className="text-blue-600 font-semibold text-lg mb-4">{selectedMember.role}</p>
+                
+                {selectedMember.phone && (
+                  <p className="text-gray-600 mb-6 flex items-center gap-2">
+                    <Phone size={18} />
+                    <span>{selectedMember.phone}</span>
+                  </p>
+                )}
+
+                <p className="text-gray-700 leading-relaxed mb-6 text-justify">{selectedMember.bio}</p>
+
+                {selectedMember.linkedin && (
+                  <a
+                    href={selectedMember.linkedin}
+                    className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors"
+                  >
+                    <Linkedin size={20} />
+                    <span>Connect on LinkedIn</span>
+                  </a>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </section>
   );
 }
