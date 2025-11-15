@@ -40,9 +40,7 @@ export default function About() {
         <div className="max-w-4xl mx-auto mb-20">
           <div className="bg-gradient-to-br from-blue-50 to-yellow-50 rounded-3xl p-8 md:p-12 shadow-lg">
             <p className="text-lg text-gray-700 leading-relaxed mb-6 text-justify">
-              The Youth Development Forum was founded in 2020 with a singular vision: to create a dynamic and inclusive space where young people
-              from all walks of life can discover their potential, develop essential skills, and become active contributors to society. Our journey
-              began with a small group of dedicated individuals who believed in the power of youth to transform communities.
+              The history of the Sifawa Development Forum (SDF) dates back to 2015, when one of the visionary sons of the community, Alhaji Isma'ila Umar, mni, Magajin Garin Sifawa, invited a small circle of seven like-minded individuals to his residence in Sifawa. During that meeting, he passionately narrated examples of thriving community associations in Jos, Kaduna, Kebbi, Sokoto and even in Abuja that had united people to drive meaningful development at the grassroots. He challenged the group to imagine a similar model for Sifawa - one that could serve as a platform for mobilization, empowerment and sustainable growth. He emphasized that every community must own its development vision and take charge of its destiny. Subsequent meetings led to the adoption of the name "Sifawa Development Forum" (SDF), and the initiator advised that the Forum must begin modestly by tasking members to execute a tangible project - proof that the group meant action, not just words.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed mb-6 text-justify">
               Since our inception, we've grown into a thriving community of over 1,000 passionate individuals committed to

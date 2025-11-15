@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { Linkedin, X, Phone } from 'lucide-react';
 import President from '../President.jpeg';
-
+import Vice from '../Vice.jpeg';
+import Financial from '../Financial.jpeg';
+import AsstSecretary from '../Asst.jpeg';
+import PublicSecretary from '../PublicSectary1.jpeg';
+import Security from '../MSecurity.jpeg';
+import Education from '../memberEdu.jpeg';
+import Education1  from '../Education1.jpeg';
 interface TeamMember {
   name: string;
   role: string;
@@ -31,42 +37,58 @@ export default function Team() {
 
   const teamMembers: TeamMember[] = [
     {
-      name: 'Amina Bello',
-      role: 'Programs Director',
-      image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=600',
-      bio: 'Amina coordinates SDF programs and ensures they respond to local needs. Her background in education enables practical, community-led learning.',
+      name: 'Bashar Umar Sifawa (Durunbun Sifawa)',
+      role: 'Vice President',
+      image: Vice,
+      bio: '',
       phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
-      name: 'Chukwuemeka Okafor',
-      role: 'Community Outreach Lead',
-      image: 'https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&w=600',
-      bio: 'Chukwuemeka builds strong ties with local leaders and youth groups to expand SDF’s reach and strengthen grassroots participation.',
+      name: 'Zayyanu Bello sifawa (Tafarkin Sifawa)',
+      role: 'Asst. Secretary',
+      image: AsstSecretary,
+      bio: '',
       phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
-      name: 'Fatima Yusuf',
-      role: 'Mentorship Coordinator',
-      image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600',
-      bio: 'Fatima runs mentorship programs that link young people with professionals for career guidance and personal development.',
+      name: "Nasiru Alkali Shehu (Dan'iyan Sifawa)",
+      role: 'Financial Secretary',
+      image: Financial,
+      bio: '',
       phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
-      name: 'Emeka Nwankwo',
-      role: 'Events & Activities Manager',
-      image: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600',
-      bio: 'Emeka designs engaging, impactful events that showcase youth talent and create learning opportunities across Sifawa.',
+      name: 'Nura Bello Sifawa',
+      role: 'Publicly Secretary I Ag. Chairman Education Committee',
+      image: PublicSecretary,
+      bio: '',
       phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
-      name: 'Ngozi Adenike',
-      role: 'Communications Director',
-      image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600',
-      bio: 'Ngozi manages SDF’s storytelling and digital outreach to highlight success stories and attract partners and volunteers.',
+      name: 'Muntaka Muhammad',
+      role: 'Member,Security Committee',
+      image: Security,
+      bio: '',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Mukhtar Salihu',
+      role: 'Member Education committee',
+      image: Education,
+      bio: '',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Zubairu Adamu',
+      role: 'Education committee',
+      image: Education1,
+      bio: '',
       phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     }
@@ -145,7 +167,7 @@ export default function Team() {
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent"></div>
               </div>
