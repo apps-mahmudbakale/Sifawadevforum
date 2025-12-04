@@ -1,47 +1,47 @@
-import { GraduationCap, Users, HandHeart, Award, Briefcase, BookOpen } from 'lucide-react';
+import { BookOpen, Coins, Heart, Wrench, Shield, School } from 'lucide-react';
 
 export default function Activities() {
   const activities = [
     {
-      icon: GraduationCap,
-      title: 'Leadership Bootcamp',
-      description: 'Intensive training programs designed to develop essential leadership skills, strategic thinking, and decision-making abilities for tomorrow\'s leaders.',
+      icon: Coins,
+      title: 'Youth Empowerment',
+      description: 'Small business grants and loans for young entrepreneurs to promote economic self-reliance and growth.',
       image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
       color: 'blue'
     },
     {
-      icon: Briefcase,
-      title: 'Skill Development Workshops',
-      description: 'Hands-on workshops covering digital literacy, public speaking, project management, and career readiness to prepare youth for success.',
-      image: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800',
+      icon: Heart,
+      title: 'Elderly Support',
+      description: 'Welfare, medical, and emotional support to vulnerable elders and ill persons in our community.',
+      image: 'https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=800',
       color: 'yellow'
     },
     {
-      icon: HandHeart,
-      title: 'Community Outreach',
-      description: 'Volunteer initiatives and service projects that enable youth to make tangible differences in their local communities and beyond.',
-      image: 'https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=800',
+      icon: Wrench,
+      title: 'Project Maintenance',
+      description: 'Ensuring sustainability and proper functionality of past and ongoing developmental projects.',
+      image: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800',
       color: 'blue'
     },
     {
-      icon: Users,
-      title: 'Mentorship Program',
-      description: 'One-on-one mentorship connecting youth with experienced professionals who provide guidance, support, and valuable insights.',
-      image: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800',
+      icon: School,
+      title: 'Student Support',
+      description: 'Mentoring, training, and counselling programmes to improve academic performance and wellbeing.',
+      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
       color: 'yellow'
     },
     {
-      icon: Award,
-      title: 'Youth Innovation Challenge',
-      description: 'Annual competition where teams develop creative solutions to real-world problems, fostering innovation and entrepreneurial thinking.',
-      image: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800',
+      icon: Shield,
+      title: 'Security Support',
+      description: 'Strengthening local security systems through logistics and moral support for safety.',
+      image: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800',
       color: 'blue'
     },
     {
       icon: BookOpen,
-      title: 'Personal Development Series',
-      description: 'Monthly seminars on goal setting, emotional intelligence, time management, and other essential life skills for personal growth.',
-      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
+      title: 'Islamiyya Support',
+      description: 'Supporting Islamiyya teachers to enhance Islamic education and uphold community values.',
+      image: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800',
       color: 'yellow'
     }
   ];
@@ -95,6 +95,59 @@ export default function Activities() {
               </div>
             );
           })}
+        </div>
+
+        <div className="mt-24">
+          <div className="text-center mb-12">
+            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Our History</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-4 mb-6">Journey & Impact</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-yellow-400 mx-auto mb-4"></div>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              A timeline of our dedicated service and developmental milestones in the Sifawa community.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto shadow-xl rounded-2xl border border-gray-100">
+            <table className="w-full text-left border-collapse bg-white">
+              <thead>
+                <tr className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                  <th className="p-4 md:p-6 text-sm font-bold uppercase tracking-wider border-b border-blue-800 w-1/6">Year</th>
+                  <th className="p-4 md:p-6 text-sm font-bold uppercase tracking-wider border-b border-blue-800 w-1/3">Activity / Project</th>
+                  <th className="p-4 md:p-6 text-sm font-bold uppercase tracking-wider border-b border-blue-800">Description / Impact</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {[
+                  { year: '2015', title: 'Establishment of Adult Islamic Class', desc: 'Initiated at the residence of Wakilin Sifawa, providing basic Islamic education on purification, ablution, prayer, and hygiene for adults.' },
+                  { year: '2016', title: "Women's Hygiene and Sanitation Programme", desc: 'Empowered women with knowledge of personal hygiene and environmental cleanliness, improving community health and sanitation.' },
+                  { year: '2017', title: 'Support to Makabarta and Local Primary Schools', desc: 'Clear weeds and sanitized Makabarta; provided learning materials and infrastructural assistance to enhance Islamic and formal education.' },
+                  { year: '2018', title: 'Ramadan Feeding and Scholarship Support', desc: 'Supported fasting families and provided scholarships to needy students to promote education and social welfare.' },
+                  { year: '2019', title: 'Tree Planting and Environmental Clean-up', desc: 'Promoted environmental sustainability and beautification through afforestation and community sanitation drives.' },
+                  { year: '2020', title: 'Community Health and Awareness Outreach', desc: 'Conducted medical awareness and health screening campaigns addressing public health issues and preventive care.' },
+                  { year: '2021', title: 'Support for Orphans in primary schools', desc: 'Provided clothing to orphans and strengthening social support systems.' },
+                  { year: '2022', title: 'Support for Ali Tambari Primary School, Sifawa', desc: 'Assisted in infrastructural renovation, provision of teaching materials, and teacher motivation to enhance learning quality.' },
+                  { year: '2023 (a)', title: 'Support of Mudalia and Musabaka Competitions', desc: "Supported Qur'anic recitation and Islamic knowledge competitions to promote moral and spiritual development." },
+                  { year: '2023 (b)', title: 'Community Security Sensitization Programme', desc: 'Collaborated with local security operatives and stakeholders to raise awareness on community vigilance and peacebuilding.' },
+                  { year: '2023 (c)', title: 'Expansion of Educational Support and Scholarships', desc: 'Broadened scholarship schemes and provided capacity-building opportunities for students and teachers across Sifawa.' },
+                  { year: '2023 (d)', title: 'Well Drilling, Borehole Repairs and Maintenance', desc: 'Improved access to clean and safe water for households and institutions within the community.' },
+                  { year: '2023 (e)', title: 'Town Electricity Maintenance and Support', desc: 'Assisted in repair and stabilization of power supply systems, enhancing living standards and productivity.' },
+                  { year: '2024 (a)', title: 'Youth Empowerment and Loan Schemes', desc: 'Introduced small business grants and loans for young entrepreneurs to promote economic self-reliance.' },
+                  { year: '2024 (b)', title: 'Support to the Elderly and Sick Persons', desc: 'Offered welfare, medical, and emotional support to vulnerable elders and ill persons in the town.' },
+                  { year: '2025 (a)', title: 'Supervision and Maintenance of Community Projects', desc: 'Ensured sustainability and proper functionality of past and ongoing SDF developmental projects.' },
+                  { year: '2025 (b)', title: "Students' Support, Training, and Counselling", desc: 'Organized mentoring, training, and counselling programmes to improve academic performance and emotional wellbeing.' },
+                  { year: '2025 (c)', title: 'Support to Security Operatives (Vigilante Group)', desc: 'Strengthened local security systems through logistics and moral support to ensure safety of lives and property.' },
+                  { year: '2025 (d)', title: 'Support to Islamiyya Schools', desc: 'Paid monthly allowances to 10 Islamiyya teachers to enhance Islamic education and uphold community values.' },
+                  { year: '2018 - 2024', title: 'Annual General Meetings of SDF', desc: 'Sustained unity and cooperation among members through annual interactive and developmental meetings.' },
+                ].map((item, idx) => (
+                  <tr key={idx} className="hover:bg-blue-50 transition-colors duration-150">
+                    <td className="p-4 md:p-6 text-sm font-semibold text-blue-900 align-top whitespace-nowrap">{item.year}</td>
+                    <td className="p-4 md:p-6 text-sm font-bold text-gray-900 align-top">{item.title}</td>
+                    <td className="p-4 md:p-6 text-sm text-gray-700 align-top leading-relaxed">{item.desc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div className="mt-16 text-center">
