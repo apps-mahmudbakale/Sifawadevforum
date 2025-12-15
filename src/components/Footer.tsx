@@ -59,7 +59,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 <Mail size={20} className="text-blue-400 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">info@youthdevelopmentforum.org</span>
+                <span className="text-gray-400">info@sifawadevforum.com</span>
               </li>
               <li className="flex items-start space-x-3">
                 <Phone size={20} className="text-blue-400 mt-1 flex-shrink-0" />
@@ -89,12 +89,12 @@ export default function Footer() {
         <div className="border-t border-gray-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              &copy; {currentYear} Youth Development Forum. All rights reserved.
+              &copy; {currentYear} Sifawa Development Forum. All rights reserved.
             </p>
             <p className="text-gray-400 text-sm flex items-center space-x-2">
               <span>Made with</span>
               <Heart size={16} className="text-red-500 fill-current" />
-              <span>for the youth</span>
+              <span>By Bnetworks IT Solutions</span>
             </p>
           </div>
         </div>
