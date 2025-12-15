@@ -1,13 +1,23 @@
 import { useState } from 'react';
 import { Linkedin, X, Phone } from 'lucide-react';
 import President from '../President.jpeg';
-import Vice from '../Vice.jpeg';
-import Financial from '../Financial.jpeg';
-import AsstSecretary from '../Asst.jpeg';
-import PublicSecretary from '../PublicSectary1.jpeg';
-import Security from '../MSecurity.jpeg';
-import Education from '../memberEdu.jpeg';
-import Education1  from '../Education1.jpeg';
+import VP from '../team/VP.jpg';
+import FinancialSec from '../team/FinancialSec.jpg';
+import AsstSec from '../team/AsstSec.jpg';
+import Treasurer from '../team/Treasurer.jpg';
+import PublicSecretary from '../team/AgChairman.jpg';
+import PublicSecretary2 from '../team/PublicitySecII.jpeg';
+import Sirajo from '../team/sirajo.jpeg';
+import Durbin from '../team/AbdulRashid.jpeg';
+import Security from '../team/Mutaka.jpeg';
+import Education from '../team/Mukhtar.jpeg';
+import Education1 from '../team/Zubairu.jpeg';
+import Sahalu from '../team/Sahalu.jpeg';
+import LegalAdvisor from '../team/Legal.jpeg';
+import Abbas from '../team/Abbas.jpeg';
+import Grand from '../team/Grand.jpeg';
+import Prof from '../team/Prof.jpeg';
+import Gimbiyar from '../team/Gimbiyar.jpeg';
 interface TeamMember {
   name: string;
   role: string;
@@ -39,7 +49,7 @@ export default function Team() {
     {
       name: 'Bashar Umar Sifawa (Durunbun Sifawa)',
       role: 'Vice President',
-      image: Vice,
+      image: VP,
       bio: '',
       phone: '+234 XXX XXX XXXX',
       linkedin: '#'
@@ -47,7 +57,7 @@ export default function Team() {
     {
       name: 'Zayyanu Bello sifawa (Tafarkin Sifawa)',
       role: 'Asst. Secretary',
-      image: AsstSecretary,
+      image: AsstSec,
       bio: '',
       phone: '+234 XXX XXX XXXX',
       linkedin: '#'
@@ -55,7 +65,23 @@ export default function Team() {
     {
       name: "Nasiru Alkali Shehu (Dan'iyan Sifawa)",
       role: 'Financial Secretary',
-      image: Financial,
+      image: FinancialSec,
+      bio: '',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: "Aliyu Malami Sifawa CPA,CNA,ACIT",
+      role: 'Treasurer',
+      image: Treasurer,
+      bio: '',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Barrister Sanusi Muhammad Sifawa',
+      role: 'Legal Advisor',
+      image: LegalAdvisor,
       bio: '',
       phone: '+234 XXX XXX XXXX',
       linkedin: '#'
@@ -69,9 +95,33 @@ export default function Team() {
       linkedin: '#'
     },
     {
+      name: 'Sanusi Abdullahi Sifawa',
+      role: 'Publicly Secretary II Member Socio Cultural and Economic Development Committee',
+      image: PublicSecretary2,
+      bio: '',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Sirajo Shehu Sifawa',
+      role: 'Member, Education Committee',
+      image: Sirajo,
+      bio: '',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
       name: 'Muntaka Muhammad',
       role: 'Member,Security Committee',
       image: Security,
+      bio: '',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Sahalu Muhammad',
+      role: 'Member,Socio-Cultural and Economic Development Committee',
+      image: Sahalu,
       bio: '',
       phone: '+234 XXX XXX XXXX',
       linkedin: '#'
@@ -88,6 +138,46 @@ export default function Team() {
       name: 'Zubairu Adamu',
       role: 'Education committee',
       image: Education1,
+      bio: '',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Abdulrashid Sarkin-kudu (Durbin Sifawa)',
+      role: 'Member Security committee',
+      image: Durbin,
+      bio: '',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Abbas Sulaiman',
+      role: 'Member Sociocultural and economic development committee',
+      image: Abbas,
+      bio: '',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Alh Sama"ila Umar Sifawa, mni Magajin Garin Sifawa',
+      role: 'Grand Patron',
+      image: Grand,
+      bio: '',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Prof Attahiru Ahmad Sifawa',
+      role: 'SDF Patron II',
+      image: Prof,
+      bio: '',
+      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Hajiya Kulu Abdullahi Sifawa (Gimbiyar Sifawa)',
+      role: 'Patton III',
+      image: Gimbiyar,
       bio: '',
       phone: '+234 XXX XXX XXXX',
       linkedin: '#'
@@ -112,11 +202,11 @@ export default function Team() {
         {/* President section */}
         <div className="max-w-4xl mx-auto mb-12">
           <div className="bg-white rounded-3xl shadow-lg overflow-hidden md:flex">
-            <div className="md:w-1/2 h-80 relative">
+            <div className="md:w-1/2 min-h-[24rem] relative">
               <img
                 src={president.image}
                 alt={president.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
             <div className="md:w-1/2 p-8 flex flex-col justify-between">
@@ -163,11 +253,11 @@ export default function Team() {
               style={{ animationDelay: `${index * 100}ms` }}
               onClick={() => setSelectedMember(member)}
             >
-              <div className="relative overflow-hidden h-80">
+              <div className="relative overflow-hidden aspect-[3/4]">
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent"></div>
               </div>
@@ -197,27 +287,28 @@ export default function Team() {
             onClick={() => setSelectedMember(null)}
           >
             <div
-              className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in duration-200"
+              className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in duration-200 md:flex relative"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative h-72">
+              <button
+                onClick={() => setSelectedMember(null)}
+                className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm rounded-full p-2 hover:bg-white transition-colors shadow-sm"
+              >
+                <X size={24} className="text-gray-800" />
+              </button>
+
+              <div className="relative aspect-[3/4] md:w-1/2">
                 <img
                   src={selectedMember.image}
                   alt={selectedMember.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
-                <button
-                  onClick={() => setSelectedMember(null)}
-                  className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2 hover:bg-white transition-colors"
-                >
-                  <X size={24} className="text-gray-800" />
-                </button>
               </div>
 
-              <div className="p-8">
+              <div className="p-8 md:w-1/2">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">{selectedMember.name}</h3>
                 <p className="text-blue-600 font-semibold text-lg mb-4">{selectedMember.role}</p>
-                
+
                 {selectedMember.phone && (
                   <p className="text-gray-600 mb-6 flex items-center gap-2">
                     <Phone size={18} />
