@@ -3,7 +3,7 @@ import Career from '../projects/Career.png';
 import Jamb from '../projects/Jamb.png';
 import Workshop from '../projects/workshop.png';
 import Skills from '../projects/skills.png';
-import Makabarta from '../projects/makabarta.png';
+import Makabarta from '../projects/Makabarta.png';
 import Wells from '../projects/wells.png';
 
 export default function Activities() {
