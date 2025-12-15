@@ -1,9 +1,17 @@
 import { useState } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import Career from '../projects/Career.png';
+import Jamb from '../projects/Jamb.png';
+import Workshop from '../projects/Workshop.png';
+import Skills from '../projects/skills.png';
+import Makabarta from '../projects/makabarta.png';
+import Wells from '../projects/wells.png';
+import Video from '../VIDEO-2025-12-14-15-22-49.mp4';
 
 interface GalleryImage {
-  url: string;
+  url?: string;
   caption: string;
+  type: 'image' | 'video';
 }
 
 export default function Gallery() {
@@ -11,40 +19,39 @@ export default function Gallery() {
 
   const images: GalleryImage[] = [
     {
-      url: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Youth Leadership Summit 2024'
+      url: Career,
+      caption: 'Career Guidance for Students',
+      type: 'image'
     },
     {
-      url: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Community Service Day'
+      url: Workshop,
+      caption: 'SSCE/JAMB Success Workshop',
+      type: 'image'
     },
     {
-      url: 'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Skill Development Workshop'
+      url: Jamb,
+      caption: 'JAMB Forms Distribution',
+      type: 'image'
     },
     {
-      url: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Team Building Activities'
+      url: Skills,
+      caption: 'Skills Acquisition Training',
+      type: 'image'
     },
     {
-      url: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Mentorship Session'
+      url: Makabarta,
+      caption: 'Makabarta Gate Project',
+      type: 'image'
     },
     {
-      url: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Innovation Challenge Finals'
+      url: Wells,
+      caption: 'Community Well Excavation',
+      type: 'image'
     },
     {
-      url: 'https://images.pexels.com/photos/3184670/pexels-photo-3184670.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Community Outreach Program'
-    },
-    {
-      url: 'https://images.pexels.com/photos/3182746/pexels-photo-3182746.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Youth Empowerment Conference'
-    },
-    {
-      url: 'https://images.pexels.com/photos/3184191/pexels-photo-3184191.jpeg?auto=compress&cs=tinysrgb&w=800',
-      caption: 'Public Speaking Workshop'
+      url: Video,
+      caption: 'Upcoming Video Highlight',
+      type: 'video'
     }
   ];
 
@@ -71,24 +78,47 @@ export default function Gallery() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {images.map((image, index) => (
+          {images.map((item, index) => (
             <div
               key={index}
               className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer animate-in fade-in duration-700"
               style={{
                 animationDelay: `${index * 50}ms`,
-                height: index % 3 === 0 ? '400px' : '320px'
+                height: '320px'
               }}
               onClick={() => setSelectedImage(index)}
             >
-              <img
-                src={image.url}
-                alt={image.caption}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {item.type === 'image' ? (
+                <img
+                  src={item.url}
+                  alt={item.caption}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              ) : (
+                <div className="w-full h-full relative group-hover:scale-110 transition-transform duration-500">
+                  <video
+                    src={item.url}
+                    className="w-full h-full object-cover"
+                    muted
+                    loop
+                    playsInline
+                    onMouseOver={(e) => e.currentTarget.play()}
+                    onMouseOut={(e) => {
+                      e.currentTarget.pause();
+                      e.currentTarget.currentTime = 0;
+                    }}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:bg-white/20 transition-colors">
+                      <Play size={40} className="text-white fill-white ml-2" />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white font-semibold text-lg">{image.caption}</p>
+                  <p className="text-white font-semibold text-lg">{item.caption}</p>
                 </div>
               </div>
             </div>
@@ -131,12 +161,21 @@ export default function Gallery() {
             <ChevronRight size={28} className="text-white" />
           </button>
 
-          <div className="max-w-5xl w-full animate-in zoom-in duration-200" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={images[selectedImage].url}
-              alt={images[selectedImage].caption}
-              className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
-            />
+          <div className="max-w-5xl w-full animate-in zoom-in duration-200 flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+            {images[selectedImage].type === 'image' ? (
+              <img
+                src={images[selectedImage].url}
+                alt={images[selectedImage].caption}
+                className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
+              />
+            ) : (
+              <video
+                src={images[selectedImage].url}
+                controls
+                autoPlay
+                className="w-full h-auto max-h-[80vh] rounded-lg shadow-2xl"
+              />
+            )}
             <p className="text-white text-center text-xl font-semibold mt-6">
               {images[selectedImage].caption}
             </p>
