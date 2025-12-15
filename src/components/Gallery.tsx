@@ -5,7 +5,7 @@ import Jamb from '../projects/Jamb.png';
 import Workshop from '../projects/workshop.png';
 import Skills from '../projects/skills.png';
 import Makabarta from '../projects/Makabarta.png';
-import Wells from '../projects/wells.png';
+import Wells from '../projects/Wells.png';
 import Video from '../VIDEO-2025-12-14-15-22-49.mp4';
 
 interface GalleryImage {
