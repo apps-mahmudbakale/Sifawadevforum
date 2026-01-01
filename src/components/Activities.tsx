@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { BookOpen, Coins, Heart, Wrench, Shield, School } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 import Career from '../projects/Career.png';
 import Jamb from '../projects/Jamb.png';
 import Workshop from '../projects/workshop.png';
@@ -6,8 +8,12 @@ import Skills from '../projects/skills.png';
 import Makabarta from '../projects/Makabarta.png';
 import Wells from '../projects/Wells.png';
 
+const iconMap: Record<string, any> = {
+  BookOpen, Coins, Heart, Wrench, Shield, School
+};
+
 export default function Activities() {
-  const activities = [
+  const [activities, setActivities] = useState<any[]>([
     {
       icon: Coins,
       title: 'CAREER GUIDANCE FOR STUDENTS FEB, 2024',
@@ -50,7 +56,35 @@ export default function Activities() {
       image: Wells,
       color: 'yellow'
     }
-  ];
+  ]);
+
+  useEffect(() => {
+    fetchActivities();
+  }, []);
+
+  const fetchActivities = async () => {
+    const { data } = await supabase
+      .from('activities')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (data && data.length > 0) {
+      const dynamicActivities = data.map(item => ({
+        id: item.id,
+        icon: iconMap[item.icon_name] || Coins,
+        title: item.title,
+        description: item.description,
+        image: item.image,
+        color: item.color as 'blue' | 'yellow'
+      }));
+
+      setActivities(prev => {
+        const staticImages = [Career, Jamb, Workshop, Skills, Makabarta, Wells];
+        const filteredPrev = prev.filter(p => staticImages.includes(p.image));
+        return [...dynamicActivities, ...filteredPrev];
+      });
+    }
+  };
 
   return (
     <section id="activities" className="py-24 bg-white">
@@ -73,7 +107,7 @@ export default function Activities() {
 
             return (
               <div
-                key={index}
+                key={activity.id || index}
                 className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-in slide-in-from-bottom duration-700"
                 style={{ animationDelay: `${index * 100}ms` }}
               >

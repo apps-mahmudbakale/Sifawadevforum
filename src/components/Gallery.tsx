@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 import Career from '../projects/Career.png';
 import Jamb from '../projects/Jamb.png';
 import Workshop from '../projects/workshop.png';
@@ -9,51 +10,51 @@ import Wells from '../projects/Wells.png';
 import Video from '../VIDEO-2025-12-14-15-22-49.mp4';
 
 interface GalleryImage {
-  url?: string;
+  id?: string;
+  url: string;
   caption: string;
   type: 'image' | 'video';
 }
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [images, setImages] = useState<GalleryImage[]>([
+    { url: Career, caption: 'Career Guidance for Students', type: 'image' },
+    { url: Workshop, caption: 'SSCE/JAMB Success Workshop', type: 'image' },
+    { url: Jamb, caption: 'JAMB Forms Distribution', type: 'image' },
+    { url: Skills, caption: 'Skills Acquisition Training', type: 'image' },
+    { url: Makabarta, caption: 'Makabarta Gate Project', type: 'image' },
+    { url: Wells, caption: 'Community Well Excavation', type: 'image' },
+    { url: Video, caption: 'Upcoming Video Highlight', type: 'video' }
+  ]);
 
-  const images: GalleryImage[] = [
-    {
-      url: Career,
-      caption: 'Career Guidance for Students',
-      type: 'image'
-    },
-    {
-      url: Workshop,
-      caption: 'SSCE/JAMB Success Workshop',
-      type: 'image'
-    },
-    {
-      url: Jamb,
-      caption: 'JAMB Forms Distribution',
-      type: 'image'
-    },
-    {
-      url: Skills,
-      caption: 'Skills Acquisition Training',
-      type: 'image'
-    },
-    {
-      url: Makabarta,
-      caption: 'Makabarta Gate Project',
-      type: 'image'
-    },
-    {
-      url: Wells,
-      caption: 'Community Well Excavation',
-      type: 'image'
-    },
-    {
-      url: Video,
-      caption: 'Upcoming Video Highlight',
-      type: 'video'
+  useEffect(() => {
+    fetchGallery();
+  }, []);
+
+  const fetchGallery = async () => {
+    const { data } = await supabase
+      .from('gallery')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (data && data.length > 0) {
+      // Merge with static data or replace entirely. 
+      // For now, let's prepend dynamic data to the static list.
+      const dynamicItems = data.map(item => ({
+        id: item.id,
+        url: item.url,
+        caption: item.caption,
+        type: item.type as 'image' | 'video'
+      }));
+
+      setImages(prev => {
+        const staticUrls = [Career, Jamb, Workshop, Skills, Makabarta, Wells, Video];
+        const filteredPrev = prev.filter(p => staticUrls.includes(p.url));
+        return [...dynamicItems, ...filteredPrev];
+      });
     }
-  ];
+  };
 
   const navigateImage = (direction: 'prev' | 'next') => {
     if (selectedImage === null) return;
@@ -80,7 +81,7 @@ export default function Gallery() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {images.map((item, index) => (
             <div
-              key={index}
+              key={item.id || index}
               className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer animate-in fade-in duration-700"
               style={{
                 animationDelay: `${index * 50}ms`,
