@@ -12,12 +12,14 @@ interface GalleryImage {
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [images, setImages] = useState<GalleryImage[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchGallery();
   }, []);
 
   const fetchGallery = async () => {
+    setLoading(true);
     const { data } = await supabase
       .from('gallery')
       .select('*')
@@ -32,6 +34,7 @@ export default function Gallery() {
       }));
       setImages(dynamicItems);
     }
+    setLoading(false);
   };
 
   const navigateImage = (direction: 'prev' | 'next') => {
@@ -57,51 +60,62 @@ export default function Gallery() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {images.map((item, index) => (
-            <div
-              key={item.id || index}
-              className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer animate-in fade-in duration-700"
-              style={{
-                animationDelay: `${index * 50}ms`,
-                height: '320px'
-              }}
-              onClick={() => setSelectedImage(index)}
-            >
-              {item.type === 'image' ? (
-                <img
-                  src={item.url}
-                  alt={item.caption}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              ) : (
-                <div className="w-full h-full relative group-hover:scale-110 transition-transform duration-500">
-                  <video
+          {loading ? (
+            <div className="col-span-full py-20 flex flex-col items-center justify-center space-y-4">
+              <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+              <p className="text-gray-500 font-medium">Loading gallery...</p>
+            </div>
+          ) : images.length === 0 ? (
+            <div className="col-span-full py-20 text-center text-gray-500 bg-white/50 rounded-2xl border border-dashed border-gray-300">
+              No items found in the gallery.
+            </div>
+          ) : (
+            images.map((item, index) => (
+              <div
+                key={item.id || index}
+                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer animate-in fade-in duration-700"
+                style={{
+                  animationDelay: `${index * 50}ms`,
+                  height: '320px'
+                }}
+                onClick={() => setSelectedImage(index)}
+              >
+                {item.type === 'image' ? (
+                  <img
                     src={item.url}
-                    className="w-full h-full object-cover"
-                    muted
-                    loop
-                    playsInline
-                    onMouseOver={(e) => e.currentTarget.play()}
-                    onMouseOut={(e) => {
-                      e.currentTarget.pause();
-                      e.currentTarget.currentTime = 0;
-                    }}
+                    alt={item.caption}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:bg-white/20 transition-colors">
-                      <Play size={40} className="text-white fill-white ml-2" />
+                ) : (
+                  <div className="w-full h-full relative group-hover:scale-110 transition-transform duration-500">
+                    <video
+                      src={item.url}
+                      className="w-full h-full object-cover"
+                      muted
+                      loop
+                      playsInline
+                      onMouseOver={(e) => e.currentTarget.play()}
+                      onMouseOut={(e) => {
+                        e.currentTarget.pause();
+                        e.currentTarget.currentTime = 0;
+                      }}
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:bg-white/20 transition-colors">
+                        <Play size={40} className="text-white fill-white ml-2" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white font-semibold text-lg">{item.caption}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <p className="text-white font-semibold text-lg">{item.caption}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
 

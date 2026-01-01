@@ -8,12 +8,14 @@ const iconMap: Record<string, any> = {
 
 export default function Activities() {
   const [activities, setActivities] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchActivities();
   }, []);
 
   const fetchActivities = async () => {
+    setLoading(true);
     const { data } = await supabase
       .from('activities')
       .select('*')
@@ -31,6 +33,7 @@ export default function Activities() {
 
       setActivities(dynamicActivities);
     }
+    setLoading(false);
   };
 
   return (
@@ -46,42 +49,53 @@ export default function Activities() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {activities.map((activity, index) => {
-            const Icon = activity.icon;
-            const gradientColor = activity.color === 'blue'
-              ? 'from-blue-600 to-blue-700'
-              : 'from-yellow-400 to-yellow-500';
+          {loading ? (
+            <div className="col-span-full py-20 flex flex-col items-center justify-center space-y-4">
+              <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+              <p className="text-gray-500 font-medium">Loading activities...</p>
+            </div>
+          ) : activities.length === 0 ? (
+            <div className="col-span-full py-20 text-center text-gray-500 bg-gray-50 rounded-2xl border border-dashed border-gray-300">
+              No activities found.
+            </div>
+          ) : (
+            activities.map((activity, index) => {
+              const Icon = activity.icon;
+              const gradientColor = activity.color === 'blue'
+                ? 'from-blue-600 to-blue-700'
+                : 'from-yellow-400 to-yellow-500';
 
-            return (
-              <div
-                key={activity.id || index}
-                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-in slide-in-from-bottom duration-700"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="relative h-56 overflow-hidden">
-                  <img
-                    src={activity.image}
-                    alt={activity.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+              return (
+                <div
+                  key={activity.id || index}
+                  className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-in slide-in-from-bottom duration-700"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={activity.image}
+                      alt={activity.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
 
-                  <div className={`absolute top-4 right-4 w-14 h-14 bg-gradient-to-br ${gradientColor} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="text-white" size={28} />
+                    <div className={`absolute top-4 right-4 w-14 h-14 bg-gradient-to-br ${gradientColor} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="text-white" size={28} />
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                      {activity.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {activity.description}
+                    </p>
                   </div>
                 </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                    {activity.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {activity.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
         </div>
 
         <div className="mt-24">
