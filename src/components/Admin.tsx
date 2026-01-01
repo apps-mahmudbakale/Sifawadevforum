@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { Plus, Trash2, Film, BookOpen, Coins, Heart, Wrench, Shield, School, Database, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Plus, Trash2, Film, BookOpen, Coins, Heart, Wrench, Shield, School, Database, AlertCircle, CheckCircle2, Pencil, X } from 'lucide-react';
 
 // Import local assets for migration
 import Career from '../projects/Career.png';
@@ -26,6 +26,7 @@ export default function Admin() {
     const [galleryForm, setGalleryForm] = useState({ url: '', caption: '', type: 'image' });
     const [activityForm, setActivityForm] = useState({ title: '', description: '', image: '', color: 'blue', icon_name: 'Coins' });
     const [isUploading, setIsUploading] = useState(false);
+    const [editingId, setEditingId] = useState<string | null>(null);
 
     const toBase64 = (file: File): Promise<string> => new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -92,14 +93,20 @@ export default function Admin() {
         if (!galleryForm.url) return alert('Please select a file first.');
 
         setIsUploading(true);
-        const { error } = await supabase.from('gallery').insert([galleryForm]);
+        let error;
+        if (editingId) {
+            ({ error } = await supabase.from('gallery').update(galleryForm).eq('id', editingId));
+        } else {
+            ({ error } = await supabase.from('gallery').insert([galleryForm]));
+        }
         setIsUploading(false);
 
         if (!error) {
             setGalleryForm({ url: '', caption: '', type: 'image' });
+            setEditingId(null);
             fetchData();
         } else {
-            alert('Upload failed: ' + error.message);
+            alert('Operation failed: ' + error.message);
         }
     };
 
@@ -108,15 +115,33 @@ export default function Admin() {
         if (!activityForm.image) return alert('Please select an image first.');
 
         setIsUploading(true);
-        const { error } = await supabase.from('activities').insert([activityForm]);
+        let error;
+        if (editingId) {
+            ({ error } = await supabase.from('activities').update(activityForm).eq('id', editingId));
+        } else {
+            ({ error } = await supabase.from('activities').insert([activityForm]));
+        }
         setIsUploading(false);
 
         if (!error) {
             setActivityForm({ title: '', description: '', image: '', color: 'blue', icon_name: 'Coins' });
+            setEditingId(null);
             fetchData();
         } else {
-            alert('Upload failed: ' + error.message);
+            alert('Operation failed: ' + error.message);
         }
+    };
+
+    const startEditGallery = (item: any) => {
+        setGalleryForm({ url: item.url, caption: item.caption, type: item.type });
+        setEditingId(item.id);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const startEditActivity = (item: any) => {
+        setActivityForm({ title: item.title, description: item.description, image: item.image, color: item.color, icon_name: item.icon_name });
+        setEditingId(item.id);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleDelete = async (table: string, id: string) => {
@@ -210,9 +235,22 @@ export default function Admin() {
                     <div className="grid lg:grid-cols-3 gap-8">
                         <div className="lg:col-span-1">
                             <div className="bg-white p-6 rounded-2xl shadow-lg">
-                                <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                                    <Plus size={20} className="text-blue-600" />
-                                    Add New Item
+                                <h2 className="text-xl font-bold mb-6 flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                        {editingId ? <Pencil size={20} className="text-blue-600" /> : <Plus size={20} className="text-blue-600" />}
+                                        {editingId ? 'Edit Item' : 'Add New Item'}
+                                    </div>
+                                    {editingId && (
+                                        <button
+                                            onClick={() => {
+                                                setEditingId(null);
+                                                setGalleryForm({ url: '', caption: '', type: 'image' });
+                                            }}
+                                            className="text-gray-400 hover:text-gray-600"
+                                        >
+                                            <X size={20} />
+                                        </button>
+                                    )}
                                 </h2>
                                 <form onSubmit={handleAddGallery} className="space-gap-4 flex flex-col gap-4">
                                     <div>
@@ -227,10 +265,12 @@ export default function Admin() {
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Upload File (Image or Video)</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                            {editingId ? 'Update File (Optional)' : 'Upload File (Image or Video)'}
+                                        </label>
                                         <input
                                             type="file"
-                                            required
+                                            required={!editingId}
                                             accept={galleryForm.type === 'image' ? 'image/*' : 'video/*'}
                                             onChange={async (e) => {
                                                 const file = e.target.files?.[0];
@@ -262,7 +302,7 @@ export default function Admin() {
                                         disabled={isUploading}
                                         className="w-full py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 disabled:opacity-50"
                                     >
-                                        {isUploading ? 'Uploading...' : 'Add to Gallery'}
+                                        {isUploading ? 'Saving...' : editingId ? 'Update Item' : 'Add to Gallery'}
                                     </button>
                                 </form>
                             </div>
@@ -283,12 +323,20 @@ export default function Admin() {
                                                     <Film className="text-white" size={40} />
                                                 </div>
                                             )}
-                                            <button
-                                                onClick={() => handleDelete('gallery', item.id)}
-                                                className="absolute top-2 right-2 p-2 bg-red-100 text-red-600 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-200"
-                                            >
-                                                <Trash2 size={18} />
-                                            </button>
+                                            <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button
+                                                    onClick={(e) => { e.stopPropagation(); startEditGallery(item); }}
+                                                    className="p-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200"
+                                                >
+                                                    <Pencil size={18} />
+                                                </button>
+                                                <button
+                                                    onClick={(e) => { e.stopPropagation(); handleDelete('gallery', item.id); }}
+                                                    className="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200"
+                                                >
+                                                    <Trash2 size={18} />
+                                                </button>
+                                            </div>
                                         </div>
                                         <div className="p-4">
                                             <p className="font-medium text-gray-900 truncate">{item.caption}</p>
@@ -303,9 +351,22 @@ export default function Admin() {
                     <div className="grid lg:grid-cols-3 gap-8">
                         <div className="lg:col-span-1">
                             <div className="bg-white p-6 rounded-2xl shadow-lg">
-                                <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                                    <Plus size={20} className="text-blue-600" />
-                                    Add New Activity
+                                <h2 className="text-xl font-bold mb-6 flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                        {editingId ? <Pencil size={20} className="text-blue-600" /> : <Plus size={20} className="text-blue-600" />}
+                                        {editingId ? 'Edit Activity' : 'Add New Activity'}
+                                    </div>
+                                    {editingId && (
+                                        <button
+                                            onClick={() => {
+                                                setEditingId(null);
+                                                setActivityForm({ title: '', description: '', image: '', color: 'blue', icon_name: 'Coins' });
+                                            }}
+                                            className="text-gray-400 hover:text-gray-600"
+                                        >
+                                            <X size={20} />
+                                        </button>
+                                    )}
                                 </h2>
                                 <form onSubmit={handleAddActivity} className="flex flex-col gap-4">
                                     <div>
@@ -319,10 +380,12 @@ export default function Admin() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Upload Image</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                            {editingId ? 'Update Image (Optional)' : 'Upload Image'}
+                                        </label>
                                         <input
                                             type="file"
-                                            required
+                                            required={!editingId}
                                             accept="image/*"
                                             onChange={async (e) => {
                                                 const file = e.target.files?.[0];
@@ -376,7 +439,7 @@ export default function Admin() {
                                         disabled={isUploading}
                                         className="w-full py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 disabled:opacity-50"
                                     >
-                                        {isUploading ? 'Uploading...' : 'Add Activity'}
+                                        {isUploading ? 'Saving...' : editingId ? 'Update Activity' : 'Add Activity'}
                                     </button>
                                 </form>
                             </div>
@@ -398,12 +461,20 @@ export default function Admin() {
                                                 <h4 className="font-bold text-gray-900 truncate">{activity.title}</h4>
                                                 <p className="text-sm text-gray-500 line-clamp-1">{activity.description}</p>
                                             </div>
-                                            <button
-                                                onClick={() => handleDelete('activities', activity.id)}
-                                                className="p-2 bg-red-100 text-red-600 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-200"
-                                            >
-                                                <Trash2 size={18} />
-                                            </button>
+                                            <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button
+                                                    onClick={() => startEditActivity(activity)}
+                                                    className="p-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200"
+                                                >
+                                                    <Pencil size={18} />
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete('activities', activity.id)}
+                                                    className="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200"
+                                                >
+                                                    <Trash2 size={18} />
+                                                </button>
+                                            </div>
                                         </div>
                                     );
                                 })}

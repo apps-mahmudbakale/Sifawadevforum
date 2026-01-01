@@ -19,12 +19,6 @@ interface GalleryImage {
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [images, setImages] = useState<GalleryImage[]>([
-    { url: Career, caption: 'Career Guidance for Students', type: 'image' },
-    { url: Workshop, caption: 'SSCE/JAMB Success Workshop', type: 'image' },
-    { url: Jamb, caption: 'JAMB Forms Distribution', type: 'image' },
-    { url: Skills, caption: 'Skills Acquisition Training', type: 'image' },
-    { url: Makabarta, caption: 'Makabarta Gate Project', type: 'image' },
-    { url: Wells, caption: 'Community Well Excavation', type: 'image' },
     { url: Video, caption: 'Upcoming Video Highlight', type: 'video' }
   ]);
 

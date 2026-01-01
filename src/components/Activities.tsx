@@ -13,50 +13,7 @@ const iconMap: Record<string, any> = {
 };
 
 export default function Activities() {
-  const [activities, setActivities] = useState<any[]>([
-    {
-      icon: Coins,
-      title: 'CAREER GUIDANCE FOR STUDENTS FEB, 2024',
-      description: 'A comprehensive session providing students with professional insights into career paths, academic choices, and future opportunities to help them build a successful future.',
-      image: Career,
-      color: 'blue'
-    },
-    {
-      icon: Heart,
-      title: 'SSCE/JAMB/CBT SUCCESS TIPS WORKSHOP FOR SS III STUDENTS, FEB 2024',
-      description: 'An intensive workshop equipping SS III students with essential study strategies, exam techniques, and CBT navigation skills to maximize their success in national examinations.',
-      image: Workshop,
-      color: 'yellow'
-    },
-    {
-      icon: Wrench,
-      title: 'DISTRIBUTION OF 95 JAMB FORMS FEB, 2024',
-      description: 'Supporting educational advancement by purchasing and distributing 95 JAMB registration forms to deserving students, removing financial barriers to higher education.',
-      image: Jamb,
-      color: 'blue'
-    },
-    {
-      icon: School,
-      title: 'PROCUREMENT OF MACHINE AND TOOLS; EMPOWERMENT OF 2 YOUTHS: 6 MONTHS SKILLS ACQUISITION TRAINING, FEB - JULY, 2024',
-      description: 'A dedicated 6-month skills acquisition program coupled with the provision of machines and tools to empower youths with practical vocational skills for self-reliance.',
-      image: Skills,
-      color: 'yellow'
-    },
-    {
-      icon: Shield,
-      title: 'FIXING OF MAKABARTA  GATE AND DU’A BOARD, JAN, 2024',
-      description: 'Community service project focused on the repair and installation of the cemetery (Makabarta) gate and Du’a board, ensuring dignity and reverence for the resting place.',
-      image: Makabarta,
-      color: 'blue'
-    },
-    {
-      icon: BookOpen,
-      title: 'RE-EXCAVATION OF 15 WELLS IN SIFAWA, MARCH, 2024 ',
-      description: 'Addressing community water needs by rehabilitating and re-excavating 15 wells across Sifawa, improving access to clean and reliable water sources.',
-      image: Wells,
-      color: 'yellow'
-    }
-  ]);
+  const [activities, setActivities] = useState<any[]>([]);
 
   useEffect(() => {
     fetchActivities();
