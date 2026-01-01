@@ -1,13 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import Career from '../projects/Career.png';
-import Jamb from '../projects/Jamb.png';
-import Workshop from '../projects/workshop.png';
-import Skills from '../projects/skills.png';
-import Makabarta from '../projects/Makabarta.png';
-import Wells from '../projects/Wells.png';
-import Video from '../VIDEO-2025-12-14-15-22-49.mp4';
 
 interface GalleryImage {
   id?: string;
@@ -18,9 +11,7 @@ interface GalleryImage {
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const [images, setImages] = useState<GalleryImage[]>([
-    { url: Video, caption: 'Upcoming Video Highlight', type: 'video' }
-  ]);
+  const [images, setImages] = useState<GalleryImage[]>([]);
 
   useEffect(() => {
     fetchGallery();
@@ -32,21 +23,14 @@ export default function Gallery() {
       .select('*')
       .order('created_at', { ascending: false });
 
-    if (data && data.length > 0) {
-      // Merge with static data or replace entirely. 
-      // For now, let's prepend dynamic data to the static list.
+    if (data) {
       const dynamicItems = data.map(item => ({
         id: item.id,
         url: item.url,
         caption: item.caption,
         type: item.type as 'image' | 'video'
       }));
-
-      setImages(prev => {
-        const staticUrls = [Career, Jamb, Workshop, Skills, Makabarta, Wells, Video];
-        const filteredPrev = prev.filter(p => staticUrls.includes(p.url));
-        return [...dynamicItems, ...filteredPrev];
-      });
+      setImages(dynamicItems);
     }
   };
 

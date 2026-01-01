@@ -1,12 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BookOpen, Coins, Heart, Wrench, Shield, School } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import Career from '../projects/Career.png';
-import Jamb from '../projects/Jamb.png';
-import Workshop from '../projects/workshop.png';
-import Skills from '../projects/skills.png';
-import Makabarta from '../projects/Makabarta.png';
-import Wells from '../projects/Wells.png';
 
 const iconMap: Record<string, any> = {
   BookOpen, Coins, Heart, Wrench, Shield, School
@@ -25,7 +19,7 @@ export default function Activities() {
       .select('*')
       .order('created_at', { ascending: false });
 
-    if (data && data.length > 0) {
+    if (data) {
       const dynamicActivities = data.map(item => ({
         id: item.id,
         icon: iconMap[item.icon_name] || Coins,
@@ -35,11 +29,7 @@ export default function Activities() {
         color: item.color as 'blue' | 'yellow'
       }));
 
-      setActivities(prev => {
-        const staticImages = [Career, Jamb, Workshop, Skills, Makabarta, Wells];
-        const filteredPrev = prev.filter(p => staticImages.includes(p.image));
-        return [...dynamicActivities, ...filteredPrev];
-      });
+      setActivities(dynamicActivities);
     }
   };
 
