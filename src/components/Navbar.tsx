@@ -83,7 +83,7 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
                 {link.label}
               </button>
             ))}
-            <button
+            {/* <button
               onClick={() => navigate(isAdmin ? '/' : '/admin')}
               className={`px-4 py-2 rounded-lg font-semibold transition-all ${isAdmin
                 ? 'bg-blue-600 text-white'
@@ -91,7 +91,7 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
                 }`}
             >
               {isAdmin ? 'Exit Admin' : 'Admin'}
-            </button>
+            </button> */}
           </div>
 
           <button
@@ -116,7 +116,7 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
                 {link.label}
               </button>
             ))}
-            <button
+            {/* <button
               onClick={() => {
                 navigate(isAdmin ? '/' : '/admin');
                 setIsOpen(false);
@@ -124,7 +124,7 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
               className="block w-full text-left py-3 px-4 font-bold text-blue-600 hover:bg-blue-50"
             >
               {isAdmin ? 'Exit Admin' : 'Admin Dashboard'}
-            </button>
+            </button> */}
           </div>
         )}
       </div>
