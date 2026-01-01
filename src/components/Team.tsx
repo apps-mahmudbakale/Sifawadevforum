@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Linkedin, X, Phone } from 'lucide-react';
+import { Linkedin, X } from 'lucide-react';
 import President from '../President.jpeg';
 import VP from '../team/VP.jpg';
 import FinancialSec from '../team/FinancialSec.jpg';
@@ -18,6 +18,8 @@ import Abbas from '../team/Abbas.jpeg';
 import Grand from '../team/Grand.jpeg';
 import Prof from '../team/Prof.jpeg';
 import Gimbiyar from '../team/Gimbiyar.jpeg';
+import Secretary from '../team/PHOTO-2025-12-31-12-01-16.jpg';
+
 interface TeamMember {
   name: string;
   role: string;
@@ -25,7 +27,6 @@ interface TeamMember {
   bio: string;
   shortBio?: string;
   linkedin?: string;
-  phone?: string;
 }
 
 export default function Team() {
@@ -41,8 +42,7 @@ export default function Team() {
     After primary school, young Abubakar pursued teacher training in secondary education. He attended the College of Arts and Arabic Studies in Sokoto (1989–1994), where he obtained the Grade II Teachers' Certificate in 1994. Not one to rest on his laurels, he proceeded to earn a Nigerian Certificate in Education (NCE) at Shehu Shagari College of Education, Sokoto between 1995 and 1998, graduating with an impressive Upper Credit. This credential qualified him as a trained teacher and set the stage for his career in education.
     
     Driven by a passion for higher learning, Dr. Sifawa furthered his studies at Usmanu Danfodiyo University, Sokoto (UDUS). There, he obtained a Bachelor of Arts in Education (B.A.Ed.) in Islamic Studies in 2003, finishing with a strong academic record (Second Class Lower Division). Not stopping at the bachelor's level, he continued at UDUS for postgraduate studies. He earned a Master of Education (M.Ed.) in Guidance and Counselling in 2011, and subsequently achieved the pinnacle of academic qualifications with a Doctor of Philosophy (Ph.D.) in Education (Guidance and Counselling) in 2015. This remarkable educational journey – from Qur'anic school through to a doctoral degree – highlights Dr. Sifawa's lifelong commitment to learning and personal growth.`,
-    linkedin: '#',
-    phone: '+234 703 136 9585'
+    linkedin: '#'
   };
 
   const teamMembers: TeamMember[] = [
@@ -51,7 +51,13 @@ export default function Team() {
       role: 'Vice President',
       image: VP,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
+      linkedin: '#'
+    },
+    {
+      name: 'Muhammad Bello Yusuf ',
+      role: 'Secretary General',
+      image: Secretary,
+      bio: '',
       linkedin: '#'
     },
     {
@@ -59,7 +65,6 @@ export default function Team() {
       role: 'Asst. Secretary',
       image: AsstSec,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -67,7 +72,6 @@ export default function Team() {
       role: 'Financial Secretary',
       image: FinancialSec,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -75,7 +79,6 @@ export default function Team() {
       role: 'Treasurer',
       image: Treasurer,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -83,7 +86,6 @@ export default function Team() {
       role: 'Legal Advisor',
       image: LegalAdvisor,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -91,7 +93,6 @@ export default function Team() {
       role: 'Publicly Secretary I Ag. Chairman Education Committee',
       image: PublicSecretary,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -99,7 +100,6 @@ export default function Team() {
       role: 'Publicly Secretary II Member Socio Cultural and Economic Development Committee',
       image: PublicSecretary2,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -107,7 +107,6 @@ export default function Team() {
       role: 'Member, Education Committee',
       image: Sirajo,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -115,7 +114,6 @@ export default function Team() {
       role: 'Member,Security Committee',
       image: Security,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -123,7 +121,6 @@ export default function Team() {
       role: 'Member,Socio-Cultural and Economic Development Committee',
       image: Sahalu,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -131,7 +128,6 @@ export default function Team() {
       role: 'Member Education committee',
       image: Education,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -139,7 +135,6 @@ export default function Team() {
       role: 'Education committee',
       image: Education1,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -147,7 +142,6 @@ export default function Team() {
       role: 'Member Security committee',
       image: Durbin,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -155,7 +149,6 @@ export default function Team() {
       role: 'Member Sociocultural and economic development committee',
       image: Abbas,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -163,7 +156,6 @@ export default function Team() {
       role: 'Grand Patron',
       image: Grand,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -171,7 +163,6 @@ export default function Team() {
       role: 'SDF Patron II',
       image: Prof,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     },
     {
@@ -179,13 +170,9 @@ export default function Team() {
       role: 'Patton III',
       image: Gimbiyar,
       bio: '',
-      phone: '+234 XXX XXX XXXX',
       linkedin: '#'
     }
   ];
-
-  // use the dedicated `president` object (do not search teamMembers)
-  const presidentMember = president;
 
   return (
     <section id="team" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -213,12 +200,6 @@ export default function Team() {
               <div>
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">{president.name}</h3>
                 <p className="text-blue-600 font-semibold mb-4">{president.role}</p>
-                {president.phone && (
-                  <p className="text-gray-600 mb-4 flex items-center gap-2">
-                    <Phone size={18} />
-                    <span>{president.phone}</span>
-                  </p>
-                )}
                 <p className="text-gray-700 leading-relaxed mb-6 text-justify line-clamp-4">
                   {president.shortBio || president.bio}
                 </p>
@@ -265,12 +246,6 @@ export default function Team() {
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
                 <p className="text-blue-600 font-semibold mb-4">{member.role}</p>
-                {member.phone && (
-                  <p className="text-gray-600 mb-4 flex items-center gap-2 text-sm">
-                    <Phone size={16} />
-                    <span>{member.phone}</span>
-                  </p>
-                )}
                 <p className="text-gray-600 text-sm line-clamp-2 mb-4 text-justify">{member.bio}</p>
                 <button className="text-blue-600 font-semibold text-sm hover:text-blue-700 transition-colors">
                   Read More →
@@ -308,13 +283,6 @@ export default function Team() {
               <div className="p-8 md:w-1/2">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">{selectedMember.name}</h3>
                 <p className="text-blue-600 font-semibold text-lg mb-4">{selectedMember.role}</p>
-
-                {selectedMember.phone && (
-                  <p className="text-gray-600 mb-6 flex items-center gap-2">
-                    <Phone size={18} />
-                    <span>{selectedMember.phone}</span>
-                  </p>
-                )}
 
                 <p className="text-gray-700 leading-relaxed mb-6 text-justify">{selectedMember.bio}</p>
 
